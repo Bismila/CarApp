@@ -1,0 +1,43 @@
+.btnCreate{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 5px;
+    button{
+        max-width: 50%;
+        width: 100%;
+        padding: 15px 0;
+        border: 1px solid green;
+        background-color: green;
+        color: #ffffff;
+        &:hover{
+            background-color: #ffffff;
+            transition: ease .4s all; 
+            color: green;
+        }
+    }
+}
+.inputs-position{
+    // padding: 10px 0;
+}
+.inputs{
+    display: inline-block;
+
+}
+#date-1,
+#date-2{
+    max-width: 200px;
+    width: 100%;
+    padding: 10px 0;
+    height: 40px;
+
+}
+
+#date-1:focus,
+#date-2:focus {
+    // padding: 10px 0 !important;
+}
+.textbox-n{
+    max-width: 200px;
+    width: 100%;
+    padding: 10px 0;
+}

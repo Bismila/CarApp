@@ -1,0 +1,158 @@
+
+<div [formGroup]="orderForm">
+  <!-- DATE & TIME begin -->
+  <div class="inputs-position">
+      <div class="inputs">
+          <input id="date-1" class="textbox-n" type="text" placeholder="Select date" 
+                  onfocus="(this.type='date')" 
+                  onchange="this.blur();" 
+                  [formControl]="dateFrom1" 
+                  required> 
+      </div>
+      <div class="inputs" >
+          <input type="time" class="textbox-n"  
+                  placeholder="Select time"
+                  [formControl]="timeFrom1"
+                  required>
+      </div>
+  </div>
+  <div class="inputs-position">
+      <div class="inputs" > 
+          <input class="inputs" id="date-2" class="textbox-n" type="text"  placeholder="Select date"
+                  onfocus="(this.type='date')" 
+                  onchange="this.blur();"
+                  [formControl]="dateEnd"> 
+      </div>
+      <div class="inputs" >
+          <input class="inputs" type="time" class="textbox-n"  
+                  placeholder="Select time"
+                  [formControl]="timeEnd">
+      </div>
+  </div>
+  <!-- DATE & TIME end -->
+
+  <!-- STORE HOURS begin -->
+  <!-- STORE HOURS end -->
+
+  <!-- CHOOSE YOUR SERVICES begin -->
+  <div>
+    <div class="">
+        <input id="transmission" class="" type="checkbox" [formControl]="transmission" (click)="selectSupport($event)" >
+        <label class="" for="transmission">Transmission</label>
+    </div>
+    <div class="">
+        <input id="maintenance"  class="" type="checkbox" [formControl]="maintenance"(click)="selectSupport($event)" >
+        <label class="" for="maintenance">Vehicle Maintenance</label>
+    </div>
+    <div class="">
+        <input id="rapair" type="checkbox" [formControl]="rapair" class="" (click)="selectSupport()" >
+        <label class="" for="rapair">Vehicle Rapair</label>
+    </div>
+    <div class="">
+        <input id="other" type="checkbox" [formControl]="other" class="" (click)="selectSupport()" >
+        <label class="" for="other">Other</label>
+    </div>
+  </div>
+  
+  <!-- CHOOSE YOUR SERVICES end -->
+
+  <!-- YOUR VEHCLE begin -->
+  <div class="">
+      <input type="number" 
+            class="form-control"
+            placeholder="YEAR OF CAR"
+            [formControl]="carYear" 
+            maxlength="8">
+  </div>
+
+  <div class="">
+      <select class="form-control" 
+              [formControl]="carModel">
+          <option disabled [value]="" selected>SELECT YOUR CAR</option>
+          <option *ngFor="let car of cars" 
+                  [value]="car">{{car}}</option>
+      </select>
+  </div>
+
+<div class="">
+  <textarea type="text" 
+        class="form-control"
+        placeholder="WRITE YOUR MESSAGE"
+        [formControl]="message"
+        maxlength="100"></textarea>
+</div>
+  <!-- YOUR VEHCLE end -->
+
+  <!-- PERSONAL DETAILS begin -->
+  <div>
+
+  </div>
+  <div>
+      <div class="">
+          <input type="text" 
+                class="form-control"
+                [formControl]="firstName" 
+                placeholder="FIRST NAME">
+              <div [hidden]="firstName.valid" class="error-text">Enter your name</div>
+      </div>
+      <div class="">
+          <input type="text" 
+                class="form-control" 
+                [formControl]="lastName" 
+                placeholder="SECOND NAME">
+      </div>
+  </div>
+
+  <div>
+      <div class="">
+          <input type="text" 
+                [formControl]="email" 
+                class="form-control" 
+                placeholder="EMAIL">
+          <div [hidden]="email.valid" class="error-text">Email is not a valid</div>
+      </div>
+
+      <div class="">
+          <input type="text" 
+                [formControl]="phone"
+                class="form-control"
+                placeholder="PHONE NUMBER">
+      </div>
+  </div>
+
+  <!-- PERSONAL DETAILS end -->
+
+  <div class="btn-group">
+    <div class="btnCreate">
+        <button type="button" class="" (click)="clearData()">
+            <div class="">CLEAR</div>
+        </button>
+    </div>
+    <div class="btnCreate">
+        <button (click)="sendData()">Create user</button>
+    </div>
+  </div>
+</div>
+
+<!-- SIGN UP FOR SPECIAL OFFERS begin -->
+<div class="">
+    <input type="text" class="form-control input-border" 
+            placeholder="ENTER HERE YOUR EMAIL"
+            [formControl]="emailSignUp" 
+            required>
+    <div class="input-group-append">
+        <button class="btn btn-outline-secondary send-button" 
+                type="button"
+                [disabled]="emailSignUp.invalid" 
+                (click)="singUp()">
+            <div class="">
+                SEND
+            </div>
+        </button>
+    </div>
+</div>
+<!-- SIGN UP FOR SPECIAL OFFERS end -->
+
+
+
+

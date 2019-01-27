@@ -1,0 +1,1 @@
+﻿Scaffold-DbContext "Server=DESKTOP-DKHEKV4\SQLEXPRESS;Database=CarDb;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -o Entities
