@@ -36,21 +36,37 @@
 
   <!-- CHOOSE YOUR SERVICES begin -->
   <div>
-    <div class="">
-        <input id="transmission" class="" type="checkbox" [formControl]="transmission" (click)="selectSupport($event)" >
-        <label class="" for="transmission">Transmission</label>
+    <div class="radio-block">
+        <input id="transmission" class="radio" 
+                type="radio" 
+                name="supports" 
+                value="transmission" 
+                [formControl]="transmission">
+        <label class="checkmark" for="transmission">Transmission</label>
     </div>
-    <div class="">
-        <input id="maintenance"  class="" type="checkbox" [formControl]="maintenance"(click)="selectSupport($event)" >
-        <label class="" for="maintenance">Vehicle Maintenance</label>
+    <div class="radio-block">
+        <input id="maintenance"  class="radio" 
+                type="radio" 
+                name="supports" 
+                value="maintenance" 
+                [formControl]="maintenance">
+        <label class="checkmark" for="maintenance">Vehicle Maintenance</label>
     </div>
-    <div class="">
-        <input id="rapair" type="checkbox" [formControl]="rapair" class="" (click)="selectSupport()" >
-        <label class="" for="rapair">Vehicle Rapair</label>
+    <div class="radio-block">
+        <input id="rapair" class="radio"
+                type="radio" 
+                name="supports" 
+                value="repair" 
+                [formControl]="rapair">
+        <label class="checkmark" for="rapair">Vehicle Rapair</label>
     </div>
-    <div class="">
-        <input id="other" type="checkbox" [formControl]="other" class="" (click)="selectSupport()" >
-        <label class="" for="other">Other</label>
+    <div class="radio-block">
+        <input id="other" class="radio" 
+                type="radio" 
+                name="supports"
+                value="other" 
+                [formControl]="other">
+        <label class="checkmark" for="other">Other</label>
     </div>
   </div>
   
