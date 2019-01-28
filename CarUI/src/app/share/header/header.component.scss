@@ -1,0 +1,121 @@
+header{
+    position: relative;
+}
+.header-bg{
+    background-image: url('../../../assets/images/bg_header.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-x: center;
+}
+
+.bg-header{
+    background-color: rgba(255,255,255, .85);
+}
+
+.margin-top-1{
+    margin-top: 1px;
+}
+
+.header-height{
+    height: 100vh;
+}
+
+.header-top {
+    padding: 15px 243px;
+    .logo{
+        padding: 5px 0 5px 46px;
+        width: 100%;
+        padding-left: 46px;
+    }
+    img{
+        width: 21%;
+    }
+}
+.header-top__menu{
+    text-align: right;
+    .col{
+        a{
+            letter-spacing: 1px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #1d3f6f;
+            &:hover{
+                text-decoration: none;
+                opacity: 0.85;
+                transition: all .4s ease;
+            }
+        }
+        
+    }
+    .phone{
+        display: block;
+        margin-top: -22px;
+        margin-right: -3px;
+        a{
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 100;
+            color: red;
+            font-size: 52px;
+            ;
+            &:hover{
+                text-decoration: none;
+            }
+        }
+    }
+    .phone-block{
+        padding-left: 14%;
+        padding-top: 20px;
+        text-align: right;
+    }
+    .phone-block__text, .phone-block__text-grey{
+        display: block;
+        text-transform: uppercase;
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 20px;
+        text-align: left;
+        color: #999999;
+        letter-spacing: 1px;
+    }
+    .phone-block__text-grey{
+        font-size: 16px;
+        color: #666666;
+    }
+
+}
+
+.header-bottom{
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    h1{
+        margin-bottom: 20%;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 600;
+        text-transform: uppercase;
+        color: #ffffff;
+        font-size: 41px;
+        letter-spacing: 2px;
+    }
+    .arrow-down{
+        span{
+            display: block;
+            font-family: 'Roboto', sans-serif;
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: 500;
+        }
+        a{
+            color: #ffffff;
+            font-size: 20px;
+        }
+    }
+    .fa-angle-double-down{
+
+    }
+}
