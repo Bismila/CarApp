@@ -1,174 +1,341 @@
-
-<div [formGroup]="orderForm">
-  <!-- DATE & TIME begin -->
-  <div class="inputs-position">
-      <div class="inputs">
-          <input id="date-1" class="textbox-n" type="text" placeholder="Select date" 
-                  onfocus="(this.type='date')" 
-                  onchange="this.blur();" 
-                  [formControl]="dateFrom1" 
-                  required> 
-      </div>
-      <div class="inputs" >
-          <input type="time" class="textbox-n"  
-                  placeholder="Select time"
-                  [formControl]="timeFrom1"
-                  required>
-      </div>
-  </div>
-  <div class="inputs-position">
-      <div class="inputs" > 
-          <input class="inputs" id="date-2" class="textbox-n" type="text"  placeholder="Select date"
-                  onfocus="(this.type='date')" 
-                  onchange="this.blur();"
-                  [formControl]="dateEnd"> 
-      </div>
-      <div class="inputs" >
-          <input class="inputs" type="time" class="textbox-n"  
-                  placeholder="Select time"
-                  [formControl]="timeEnd">
-      </div>
-  </div>
-  <!-- DATE & TIME end -->
-
-  <!-- STORE HOURS begin -->
-  <!-- STORE HOURS end -->
-
-  <!-- CHOOSE YOUR SERVICES begin -->
-  <div>
-    <div class="radio-block">
-        <input id="transmission" class="radio" 
-                type="radio" 
-                name="supports" 
-                value="transmission" 
-                [formControl]="transmission">
-        <label class="checkmark" for="transmission">Transmission</label>
-    </div>
-    <div class="radio-block">
-        <input id="maintenance"  class="radio" 
-                type="radio" 
-                name="supports" 
-                value="maintenance" 
-                [formControl]="maintenance">
-        <label class="checkmark" for="maintenance">Vehicle Maintenance</label>
-    </div>
-    <div class="radio-block">
-        <input id="rapair" class="radio"
-                type="radio" 
-                name="supports" 
-                value="repair" 
-                [formControl]="rapair">
-        <label class="checkmark" for="rapair">Vehicle Rapair</label>
-    </div>
-    <div class="radio-block">
-        <input id="other" class="radio" 
-                type="radio" 
-                name="supports"
-                value="other" 
-                [formControl]="other">
-        <label class="checkmark" for="other">Other</label>
-    </div>
-  </div>
-  
-  <!-- CHOOSE YOUR SERVICES end -->
-
-  <!-- YOUR VEHCLE begin -->
-  <div class="">
-      <input type="number" 
-            class="form-control"
-            placeholder="YEAR OF CAR"
-            [formControl]="carYear" 
-            maxlength="8">
-  </div>
-
-  <div class="">
-      <select class="form-control" 
-              [formControl]="carModel">
-          <option disabled [value]="" selected>SELECT YOUR CAR</option>
-          <option *ngFor="let car of cars" 
-                  [value]="car">{{car}}</option>
-      </select>
-  </div>
-
-<div class="">
-  <textarea type="text" 
-        class="form-control"
-        placeholder="WRITE YOUR MESSAGE"
-        [formControl]="message"
-        maxlength="100"></textarea>
-</div>
-  <!-- YOUR VEHCLE end -->
-
-  <!-- PERSONAL DETAILS begin -->
-  <div>
-
-  </div>
-  <div>
-      <div class="">
-          <input type="text" 
-                class="form-control"
-                [formControl]="firstName" 
-                placeholder="FIRST NAME">
-              <div [hidden]="firstName.valid" class="error-text">Enter your name</div>
-      </div>
-      <div class="">
-          <input type="text" 
-                class="form-control" 
-                [formControl]="lastName" 
-                placeholder="SECOND NAME">
-      </div>
-  </div>
-
-  <div>
-      <div class="">
-          <input type="text" 
-                [formControl]="email" 
-                class="form-control" 
-                placeholder="EMAIL">
-          <div [hidden]="email.valid" class="error-text">Email is not a valid</div>
-      </div>
-
-      <div class="">
-          <input type="text" 
-                [formControl]="phone"
-                class="form-control"
-                placeholder="PHONE NUMBER">
-      </div>
-  </div>
-
-  <!-- PERSONAL DETAILS end -->
-
-  <div class="btn-group">
-    <div class="btnCreate">
-        <button type="button" class="" (click)="clearData()">
-            <div class="">CLEAR</div>
-        </button>
-    </div>
-    <div class="btnCreate">
-        <button (click)="sendData()">Create user</button>
-    </div>
-  </div>
-</div>
-
-<!-- SIGN UP FOR SPECIAL OFFERS begin -->
-<div class="">
-    <input type="text" class="form-control input-border" 
-            placeholder="ENTER HERE YOUR EMAIL"
-            [formControl]="emailSignUp" 
-            required>
-    <div class="input-group-append">
-        <button class="btn btn-outline-secondary send-button" 
-                type="button"
-                [disabled]="emailSignUp.invalid" 
-                (click)="singUp()">
-            <div class="">
-                SEND
+<section class="order-block">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-sm-auto">
+                <div id='anchor'></div>
+                <h2 class="order-block__h2">
+                    PLEASE SELECT A CONVENIENT TIME TO LEAVE YOUR VEHICLE WITH US
+                </h2>
             </div>
-        </button>
+        </div>
     </div>
-</div>
-<!-- SIGN UP FOR SPECIAL OFFERS end -->
 
+    <div class="container-fluid">
+        <div [formGroup]="orderForm" class="order-form">
+            <!--LEFT PART begin -->
+            <div class="row">
+                <div class="col-md-6 border-right">
+                    <!-- DATE & TIME begin -->
+                    <h4 class="title-h4 title-h4__date col-md-9 offset-md-1">
+                            DATE & TIME
+                    </h4>
+                    <div class="inputs-position">
+                        <div class="row justify-content-center">
+                            <div class="col-md-4">
+                                <div class="inputs">
+                                    <input id="date-1" class="input-date" type="text" 
+                                            placeholder="Select date" 
+                                            [formControl]="dateFrom1" 
+                                            required> 
+                                    <span class="input-img">
+                                        <img src="../../../assets/images/calendar.png" alt="Calendar">
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="inputs" >
+                                    <input type="text" class="input-date"  
+                                            placeholder="Select time"
+                                            [formControl]="timeFrom1"
+                                            required>
+                                    <span class="input-img input-img__time-position">
+                                        <img src="../../../assets/images/clock.png" alt="Time">
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="inputs-position">
+                        <div class="row justify-content-center">
+                            <div class="col-md-4">
+                                <div class="inputs" > 
+                                    <input class="input-date" id="date-2" 
+                                            type="text" 
+                                            placeholder="Select date"
+                                            [formControl]="dateEnd"> 
+                                    <span class="input-img">
+                                        <img src="../../../assets/images/calendar.png" alt="Calendar">
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="inputs" >
+                                    <input class="input-date" type="text"   
+                                            placeholder="Select time"
+                                            [formControl]="timeEnd">
+                                    <span class="input-img input-img__time-position">
+                                        <img src="../../../assets/images/clock.png" alt="Time">
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- DATE & TIME end -->
+
+                    <div class="row justify-content-center">
+                        <div class="col-md-4">
+                            <!-- STORE HOURS begin -->
+                            <div class="works-block">
+                                <h4 class="title-h4">
+                                    Store Hours
+                                </h4>
+                                <div class="works-block__days">
+                                        Mon - Wed
+                                </div>
+                                <div class="works-block__hours">
+                                        08:00 AM - 05:00 PM
+                                </div>
+                                <div class="works-block__days">
+                                        Thu
+                                </div>
+                                <div class="works-block__hours">
+                                        08:00 AM - 04:00 PM
+                                </div>
+                                <div class="works-block__days">
+                                        Fri
+                                </div>
+                                <div class="works-block__hours">
+                                        08:00 AM - 01:00 PM
+                                </div>
+                                <div class="works-block__days">
+                                        Sat
+                                </div>
+                                <div class="works-block__hours">
+                                        CLose
+                                </div>
+                            </div>
+                            <!-- STORE HOURS end -->
+                        </div>
+                        <div class="col-md-5">
+                            <!-- CHOOSE YOUR SERVICES begin -->
+                            <div class="supports-block">
+                                <h4 class="title-h4">
+                                        Choose your services
+                                    <span class="subtitle-grey">Please select the type of service(s) needed</span>
+                                </h4>
+                                
+                                <div class="radio-block">
+                                    <input id="transmission" class="radio" 
+                                            type="radio" 
+                                            name="supports" 
+                                            value="transmission" 
+                                            [formControl]="transmission">
+                                    <label class="checkmark" for="transmission">Transmission</label>
+                                </div>
+                                <div class="radio-block">
+                                    <input id="maintenance"  class="radio" 
+                                            type="radio" 
+                                            name="supports" 
+                                            value="maintenance" 
+                                            [formControl]="maintenance">
+                                    <label class="checkmark" for="maintenance">Vehicle Maintenance</label>
+                                </div>
+                                <div class="radio-block">
+                                    <input id="rapair" class="radio"
+                                            type="radio" 
+                                            name="supports" 
+                                            value="repair" 
+                                            [formControl]="rapair">
+                                    <label class="checkmark" for="rapair">Vehicle Rapair</label>
+                                </div>
+                                <div class="radio-block">
+                                    <input id="other" class="radio" 
+                                            type="radio" 
+                                            name="supports"
+                                            value="other" 
+                                            [formControl]="other">
+                                    <label class="checkmark" for="other">Other</label>
+                                </div>
+                            </div>
+                            <!-- CHOOSE YOUR SERVICES end -->
+                        </div>
+                    </div>
+                </div>
+            <!-- LEFT PART end -->
+
+            <!-- RIGHT PART begin -->
+                <div class="col-md-6">
+                    <!-- YOUR VEHCLE begin -->
+                    <div class="row  justify-content-center">
+                        <h4 class="title-h4 title-h4__position col-md-9 offset-md-1">
+                            Your Vehicle
+                        </h4>
+                        <div class="col-md-4">
+                            <div class="">
+                                <input type="number" 
+                                        class="input-date"
+                                        placeholder="YEAR OF CAR"
+                                        [formControl]="carYear" 
+                                        maxlength="8">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="">
+                                <select class="input-date" 
+                                        [formControl]="carModel">
+                                    <option disabled [value]="" selected>SELECT YOUR CAR</option>
+                                    <option *ngFor="let car of cars" 
+                                            [value]="car">{{car}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-md-8">
+                            <div class="message-wapper">
+                                <input type="text" 
+                                        class="input-message"
+                                        placeholder="WRITE YOUR MESSAGE"
+                                        [formControl]="message"
+                                        maxlength="100">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- YOUR VEHCLE end -->
+
+                    <!-- PERSONAL DETAILS begin -->
+                    <div>
+                        <h4 class="title-h4 title-h4__personal col-md-9 offset-md-2">
+                            PERSONAL DETAILS
+                        </h4>
+                        <div class="row justify-content-center">
+                            <div class="col-md-4">
+                                <div class="">
+                                    <input type="text" 
+                                            class="input-date"
+                                            [formControl]="firstName" 
+                                            placeholder="FIRST NAME">
+                                        <div [hidden]="firstName.valid" class="error-text">Enter your name</div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="">
+                                    <input type="text" 
+                                            class="input-date" 
+                                            [formControl]="lastName" 
+                                            placeholder="SECOND NAME">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-md-4">
+                                <div class="">
+                                    <input type="text" 
+                                            [formControl]="email" 
+                                            class="input-date" 
+                                            placeholder="EMAIL">
+                                    <div [hidden]="email.valid" class="error-text">Email is not a valid</div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="">
+                                    <input type="text" 
+                                            [formControl]="phone"
+                                            class="input-date"
+                                            placeholder="PHONE NUMBER">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- PERSONAL DETAILS end -->
+    
+                    <div class="btns-from">
+                        <div class="row justify-content-between">
+                            <div class="col-4">
+                                <div class="btn-clear">
+                                    <button type="button" class="" (click)="clearData()">
+                                        <div class="">CLEAR</div>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="btn-send">
+                                    <button (click)="sendData()">send</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <!-- RIGHT PART end -->
+            </div>
+        </div>
+    </div>
+    <!-- SIGN UP FOR SPECIAL OFFERS begin -->
+    <div class="">
+        <div class="conrainer-fluid border-top__grey">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="special-block">
+                        <h3 class="special-block__h3">
+                                SIGN UP FOR SPECIAL OFFERS
+                        </h3>
+                        <div class="special-block__text">
+                                <span>Enter your mail and you will get the best </span>
+                                <span>offers we have directlly to your inbox</span>
+                        </div>
+                    </div>
+                    <div [formGroup]="signUpForm" class="send-form">
+                        <input type="text" 
+                                class="input-offers" 
+                                placeholder="ENTER HERE YOUR EMAIL"
+                                [formControl]="emailSignUp" 
+                                required>
+                        <div class="btn-send max-width__sned">
+                            <button class="" 
+                                    type="button"
+                                    [disabled]="emailSignUp.invalid" 
+                                    (click)="singUp()">
+                                    SEND
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <div class="line-wrapper">
+                        <div class="line"></div>
+                        <div class="line-txt">Or</div>
+                        <div class="line"></div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="special-block">
+                        <div class="h3 special-block__h3">
+                                Tell to Your Friends
+                        </div>
+                        <div class="special-block__text">
+                            <span>Some of your friends may like to visit if you </span>
+                            <span>recommend us. They’ll trust your taste!</span>
+                        </div>
+
+                        <div class="socials">
+                            <div class="row justify-content-center">
+                                <div class="col-2">
+                                    <div class="fb">
+                                        <div class="fb-wrapper">
+                                            <i class="fa fa-facebook-square" aria-hidden="true"></i>
+                                            Share
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="twit">
+                                        <div class="twit-wrapper">
+                                            <i class="fa fa-twitter" aria-hidden="true"></i>
+                                            Tweet
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <!-- SIGN UP FOR SPECIAL OFFERS end -->
+</section>
 
 
 
