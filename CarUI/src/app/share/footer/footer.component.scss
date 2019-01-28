@@ -79,3 +79,16 @@
         }
     }
 }
+.margin-bottom-10{
+    margin-bottom: 10px;
+}
+
+/*-----------------------------MEDIA-----------------------*/
+@media(max-width: 991px) {
+    .footer-container{
+        padding: 0;
+    }
+    .footer-top .logo img{
+        width: 20%;
+    }
+}

@@ -1,7 +1,7 @@
 <section class="order-block">
     <div class="container-fluid">
         <div class="row justify-content-center">
-            <div class="col-sm-auto">
+            <div class="col col-sm-12">
                 <div id='anchor'></div>
                 <h2 class="order-block__h2">
                     PLEASE SELECT A CONVENIENT TIME TO LEAVE YOUR VEHICLE WITH US
@@ -12,19 +12,23 @@
 
     <div class="container-fluid">
         <div [formGroup]="orderForm" class="order-form">
-            <!--LEFT PART begin -->
+            <!--LEFT PART begin --> 
             <div class="row">
-                <div class="col-md-6 border-right">
+                <div class="col-12 col-sm-12 col-lg-6 border-right">
                     <!-- DATE & TIME begin -->
-                    <h4 class="title-h4 title-h4__date col-md-9 offset-md-1">
+                    <h4 class="title-h4 title-h4__date col-md-9 offset-xl-1">
                             DATE & TIME
                     </h4>
                     <div class="inputs-position">
                         <div class="row justify-content-center">
-                            <div class="col-md-4">
+                            <div class="col-12 col-xl-4">
                                 <div class=inputs-block>
                                     <div class="inputs">
-                                        <input id="date-1" class="input-date" type="text" 
+                                        <input id="dateFrom1" class="input-date" 
+                                                type="text" 
+                                                name="dateFrom1"
+                                                bsDatepicker 
+                                                [bsConfig]="bsConfig"
                                                 placeholder="Select date *" 
                                                 [formControl]="dateFrom1" 
                                                 maxlength="10"
@@ -38,15 +42,18 @@
                                
 
                             </div>
-                            <div class="col-md-5">
+                            <div class="col-12 col-xl-5">
                                 <div class=inputs-block>
                                     <div class="inputs" >
-                                        <input type="text" class="input-date"  
+                                        <input class="input-date"  
                                                 placeholder="Select time"
+                                                type="text"   
+                                                onfocus="(this.type='time')" 
+                                                onblur="(this.type='text')"
                                                 [formControl]="timeFrom1"
                                                 maxlength="5"
                                                 required>
-                                        <span class="input-img input-img__time-position">
+                                        <span class="input-img">
                                             <img src="../../../assets/images/clock.png" alt="Time">
                                         </span>
                                     </div>
@@ -58,10 +65,12 @@
                     </div>
                     <div class="inputs-position">
                         <div class="row justify-content-center">
-                            <div class="col-md-4">
+                            <div class="col-12 col-xl-4">
                                 <div class="inputs" > 
-                                    <input class="input-date" id="date-2" 
+                                    <input class="input-date" id="dateEnd" 
                                             type="text" 
+                                            bsDatepicker 
+                                            [bsConfig]="bsConfig"
                                             placeholder="Select date"
                                             [formControl]="dateEnd"> 
                                     <span class="input-img">
@@ -69,12 +78,15 @@
                                     </span>
                                 </div>
                             </div>
-                            <div class="col-md-5">
+                            <div class="col-12 col-xl-5">
                                 <div class="inputs" >
-                                    <input class="input-date" type="text"   
+                                    <input class="input-date" 
+                                            type="text"   
+                                            onfocus="(this.type='time')" 
+                                            onblur="(this.type='text')"
                                             placeholder="Select time"
                                             [formControl]="timeEnd">
-                                    <span class="input-img input-img__time-position">
+                                    <span class="input-img">
                                         <img src="../../../assets/images/clock.png" alt="Time">
                                     </span>
                                 </div>
@@ -84,7 +96,7 @@
                     <!-- DATE & TIME end -->
 
                     <div class="row justify-content-center">
-                        <div class="col-md-4">
+                        <div class="col-12 col-xl-4">
                             <!-- STORE HOURS begin -->
                             <div class="works-block">
                                 <h4 class="title-h4">
@@ -117,7 +129,7 @@
                             </div>
                             <!-- STORE HOURS end -->
                         </div>
-                        <div class="col-md-5">
+                        <div class="col-12 col-xl-5">
                             <!-- CHOOSE YOUR SERVICES begin -->
                             <div class="supports-block">
                                 <h4 class="title-h4">
@@ -165,13 +177,13 @@
             <!-- LEFT PART end -->
 
             <!-- RIGHT PART begin -->
-                <div class="col-md-6">
+                <div class="col-12 col-sm-12 col-lg-6">
                     <!-- YOUR VEHCLE begin -->
                     <div class="row  justify-content-center">
-                        <h4 class="title-h4 title-h4__position col-md-9 offset-md-1">
+                        <h4 class="title-h4 title-h4__position col-xl-9 offset-xl-1">
                             Your Vehicle
                         </h4>
-                        <div class="col-md-4">
+                        <div class="col-12 col-xl-4">
                             <div class="inputs-block">
                                 <input type="number" 
                                         class="input-date"
@@ -180,14 +192,16 @@
                                         maxlength="8">
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-12 col-xl-4">
                             <div class="inputs-block">
-                                <select class="input-date" 
-                                        [formControl]="carModel">
-                                    <option disabled [value]="" selected>SELECT YOUR CAR</option>
-                                    <option *ngFor="let car of cars" 
-                                            [value]="car">{{car}}</option>
-                                </select>
+                                <div class="select-wrapper">
+                                    <select class="input-date" 
+                                            [formControl]="carModel">
+                                        <option disabled [value]="" selected>SELECT YOUR CAR</option>
+                                        <option *ngFor="let car of cars" 
+                                                [value]="car">{{car}}</option>
+                                    </select>
+                                </div>
                                 <div [hidden]="!isEmptyCarModel" class="error-txt">
                                     Please, select your car.
                                 </div>
@@ -195,7 +209,7 @@
                         </div>
                     </div>
                     <div class="row justify-content-center">
-                        <div class="col-md-8">
+                        <div class="col-xl-8">
                             <div class="message-wapper">
                                 <input type="text" 
                                         class="input-message"
@@ -209,11 +223,11 @@
 
                     <!-- PERSONAL DETAILS begin -->
                     <div>
-                        <h4 class="title-h4 title-h4__personal col-md-9 offset-md-2">
+                        <h4 class="title-h4 title-h4__personal col-xl-9 offset-xl-2">
                             PERSONAL DETAILS
                         </h4>
                         <div class="row justify-content-center">
-                            <div class="col-md-4">
+                            <div class="col-12 col-xl-4">
                                 <div class="inputs-block">
                                     <input type="text" 
                                             class="input-date"
@@ -222,7 +236,7 @@
                                         <div [hidden]="firstName.valid" class="error-txt">Enter your name</div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-12 col-xl-4">
                                 <div class="inputs-block">
                                     <input type="text" 
                                             class="input-date" 
@@ -233,16 +247,16 @@
                             </div>
                         </div>
                         <div class="row justify-content-center">
-                            <div class="col-md-4">
+                            <div class="col-12 col-xl-4">
                                 <div class="inputs-block">
                                     <input type="text" 
                                             [formControl]="email" 
                                             class="input-date" 
                                             placeholder="EMAIL">
-                                            <div [hidden]="email.valid" class="error-txt">Email isn't valid</div>
+                                    <div [hidden]="email.valid" class="error-txt">Email isn't valid</div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-12 col-xl-4">
                                 <div class="inputs-block">
                                     <input type="text" 
                                             [formControl]="phone"
@@ -257,14 +271,14 @@
     
                     <div class="btns-from">
                         <div class="row justify-content-between">
-                            <div class="col-4">
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
                                 <div class="btn-clear">
                                     <button type="button" class="" (click)="clearData()">
                                         <div class="">CLEAR</div>
                                     </button>
                                 </div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4">
                                 <div class="btn-send">
                                     <button type="button" 
                                             [disabled]="orderForm.invalid"
@@ -282,7 +296,7 @@
     <div class="">
         <div class="conrainer-fluid border-top__grey">
             <div class="row">
-                <div class="col-md-5">
+                <div class="col-12 col-sm-12 col-lg-5">
                     <div class="special-block">
                         <h3 class="special-block__h3">
                                 SIGN UP FOR SPECIAL OFFERS
@@ -311,7 +325,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-1">
+                <div class="col-12 col-12 col-lg-1">
                     <div class="line-wrapper">
                         <div class="line"></div>
                         <div class="line-txt">Or</div>
@@ -319,7 +333,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-12 col-12 col-lg-6">
                     <div class="special-block">
                         <div class="h3 special-block__h3">
                                 Tell to Your Friends
@@ -331,7 +345,7 @@
 
                         <div class="socials">
                             <div class="row justify-content-center">
-                                <div class="col-2">
+                                <div class="col col-2">
                                     <div class="fb">
                                         <a href="https://www.facebook.com/" target="_blank">
                                             <div class="fb-wrapper">
@@ -341,7 +355,7 @@
                                         </a>
                                     </div>
                                 </div>
-                                <div class="col-2">
+                                <div class="col col-2">
                                     <div class="twit">
                                         <a href="https://twitter.com/" target="_blank">
                                             <div class="twit-wrapper">

@@ -9,8 +9,8 @@ import { OrdersViewModel } from '../view-model/orders-view-model';
 export class MovingService {
 
   baseUrl = 'https://localhost:44306/api/';
-  constructor(private http: HttpClient) { }
 
+  constructor(private http: HttpClient) { }
 
   create(order: OrdersViewModel) {
     return this.http.post<OrdersViewModel>(this.baseUrl + 'order', order);
@@ -27,4 +27,5 @@ export class MovingService {
   getSupports(){
     return this.http.get(this.baseUrl + 'support');
   }
+
 }

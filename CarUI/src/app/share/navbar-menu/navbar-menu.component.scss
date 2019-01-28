@@ -32,3 +32,19 @@
     opacity: 1;
     color: #1d3f6f;
 }
+
+/*-----------------------------MEDIA-----------------------*/
+@media(max-width: 1355px) {
+    .navbar-nav{
+        max-width: 100%;
+    }
+}
+
+@media(max-width: 991px){
+    .nav-item{
+        width: 100%;
+    }
+    .navbar-toggler{
+        margin-left: -13px;
+    }
+}

@@ -8,8 +8,6 @@ import { MovingService } from './services/moving.service';
 })
 export class AppComponent implements OnInit{
  
-  title = 'CarUI';
-
   constructor(private _movingService: MovingService) {
     
   }

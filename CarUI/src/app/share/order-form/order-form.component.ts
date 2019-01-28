@@ -1,11 +1,12 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, NgModule } from '@angular/core';
 import { UsersViewModel } from 'src/app/view-model/users-view-model';
 import { MovingService } from 'src/app/services/moving.service';
 import { FormGroup, FormControl, Validators, ValidatorFn } from '@angular/forms';
 import { OrdersViewModel } from 'src/app/view-model/orders-view-model';
 import { CarsViewModel } from 'src/app/view-model/cars-view-model';
 import { SupportsViewModel } from 'src/app/view-model/supports-view-model';
-import {MatDatepickerModule} from '@angular/material/datepicker'
+import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+
 @Component({
   selector: 'app-order-form',
   templateUrl: './order-form.component.html',
@@ -16,9 +17,13 @@ export class OrderFormComponent implements OnInit, OnDestroy {
   user = new UsersViewModel();
   public cars: Array<string>;
   public supportsAll: Array<string>;
+  bsConfig: Partial<BsDatepickerConfig>;
+  
   defaultValue = 'SELECT YOUR CAR';
   isActive = false;
   isEmptyCarModel = true;
+  emailExist = false;
+  messageEmail = '';
   orderForm = new FormGroup({});
   //controls for date & time
   dateFrom1 = new FormControl('', Validators.required);
@@ -49,7 +54,7 @@ export class OrderFormComponent implements OnInit, OnDestroy {
 
   constructor(private _movingService: MovingService) {
    this.addControls();
-
+   this.bsConfig = Object.assign({}, { containerClass: 'theme-dark-blue' }); 
   }
 
   ngOnInit() {
@@ -70,17 +75,17 @@ export class OrderFormComponent implements OnInit, OnDestroy {
         this.isEmptyCarModel = result;
         return result;
     });
+
   }
 
   public sendData(){
-    console.log(this.orderForm);
     if(!this.orderForm.valid) {
       return;
     }
     else {
       const order = new OrdersViewModel();
-      order.dateFrom = this.dateFrom1.value + ' ' + this.timeFrom1.value;
-      order.dateEnd = this.dateEnd.value + ' ' + this.timeEnd.value;
+      order.dateFrom = this.dateFrom1.value.ToDateString() + ' ' + this.timeFrom1.value;
+      order.dateEnd = this.dateEnd.value.ToDateString() + ' ' + this.timeEnd.value;
 
       if (this.carModel.value !== this.defaultValue && (this.carYear.value !== '' || this.carModel.value !== '')) {
           order.car = new CarsViewModel();

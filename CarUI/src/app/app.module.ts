@@ -3,15 +3,18 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { Ng2PageScrollModule } from 'ng2-page-scroll';
+import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
 
 import { AppComponent } from './app.component';
+
 import { MovingService } from './services/moving.service';
 import { HeaderComponent } from './share/header/header.component';
 import { FooterComponent } from './share/footer/footer.component';
 import { OrderFormComponent } from './share/order-form/order-form.component';
 import { PageContentComponent} from './share/page-content/page-content.component';
 import { NavbarMenuComponent } from './share/navbar-menu/navbar-menu.component';
-import { Ng2PageScrollModule } from 'ng2-page-scroll';
+
 
 @NgModule({
   declarations: [
@@ -28,8 +31,10 @@ import { Ng2PageScrollModule } from 'ng2-page-scroll';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    Ng2PageScrollModule
+    Ng2PageScrollModule,
+    BsDatepickerModule.forRoot()
   ],
+  exports:[BsDatepickerModule],
   providers: [MovingService],
   bootstrap: [AppComponent]
 })
