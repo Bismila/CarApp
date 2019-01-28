@@ -22,26 +22,37 @@
                     <div class="inputs-position">
                         <div class="row justify-content-center">
                             <div class="col-md-4">
-                                <div class="inputs">
-                                    <input id="date-1" class="input-date" type="text" 
-                                            placeholder="Select date" 
-                                            [formControl]="dateFrom1" 
-                                            required> 
-                                    <span class="input-img">
-                                        <img src="../../../assets/images/calendar.png" alt="Calendar">
-                                    </span>
+                                <div class=inputs-block>
+                                    <div class="inputs">
+                                        <input id="date-1" class="input-date" type="text" 
+                                                placeholder="Select date *" 
+                                                [formControl]="dateFrom1" 
+                                                maxlength="10"
+                                                required> 
+                                        <span class="input-img">
+                                            <img src="../../../assets/images/calendar.png" alt="Calendar">
+                                        </span>
+                                    </div>
+                                    <div [hidden]="dateFrom1.valid" class="error-txt">This field is required</div> 
                                 </div>
+                               
+
                             </div>
                             <div class="col-md-5">
-                                <div class="inputs" >
-                                    <input type="text" class="input-date"  
-                                            placeholder="Select time"
-                                            [formControl]="timeFrom1"
-                                            required>
-                                    <span class="input-img input-img__time-position">
-                                        <img src="../../../assets/images/clock.png" alt="Time">
-                                    </span>
+                                <div class=inputs-block>
+                                    <div class="inputs" >
+                                        <input type="text" class="input-date"  
+                                                placeholder="Select time"
+                                                [formControl]="timeFrom1"
+                                                maxlength="5"
+                                                required>
+                                        <span class="input-img input-img__time-position">
+                                            <img src="../../../assets/images/clock.png" alt="Time">
+                                        </span>
+                                    </div>
+                                    <div [hidden]="timeFrom1.valid" class="error-txt">This field is required</div> 
                                 </div>
+                               
                             </div>
                         </div>
                     </div>
@@ -161,7 +172,7 @@
                             Your Vehicle
                         </h4>
                         <div class="col-md-4">
-                            <div class="">
+                            <div class="inputs-block">
                                 <input type="number" 
                                         class="input-date"
                                         placeholder="YEAR OF CAR"
@@ -170,13 +181,16 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="">
+                            <div class="inputs-block">
                                 <select class="input-date" 
                                         [formControl]="carModel">
                                     <option disabled [value]="" selected>SELECT YOUR CAR</option>
                                     <option *ngFor="let car of cars" 
                                             [value]="car">{{car}}</option>
                                 </select>
+                                <div [hidden]="!isEmptyCarModel" class="error-txt">
+                                    Please, select your car.
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -200,39 +214,41 @@
                         </h4>
                         <div class="row justify-content-center">
                             <div class="col-md-4">
-                                <div class="">
+                                <div class="inputs-block">
                                     <input type="text" 
                                             class="input-date"
                                             [formControl]="firstName" 
                                             placeholder="FIRST NAME">
-                                        <div [hidden]="firstName.valid" class="error-text">Enter your name</div>
+                                        <div [hidden]="firstName.valid" class="error-txt">Enter your name</div>
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <div class="">
+                                <div class="inputs-block">
                                     <input type="text" 
                                             class="input-date" 
                                             [formControl]="lastName" 
                                             placeholder="SECOND NAME">
+                                    <div [hidden]="lastName.valid" class="error-txt">Enter Last name</div>
                                 </div>
                             </div>
                         </div>
                         <div class="row justify-content-center">
                             <div class="col-md-4">
-                                <div class="">
+                                <div class="inputs-block">
                                     <input type="text" 
                                             [formControl]="email" 
                                             class="input-date" 
                                             placeholder="EMAIL">
-                                    <div [hidden]="email.valid" class="error-text">Email is not a valid</div>
+                                            <div [hidden]="email.valid" class="error-txt">Email isn't valid</div>
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <div class="">
+                                <div class="inputs-block">
                                     <input type="text" 
                                             [formControl]="phone"
                                             class="input-date"
                                             placeholder="PHONE NUMBER">
+                                    <div [hidden]="phone.valid" class="error-txt">Enter your phone</div>
                                 </div>
                             </div>
                         </div>
@@ -250,7 +266,9 @@
                             </div>
                             <div class="col-4">
                                 <div class="btn-send">
-                                    <button (click)="sendData()">send</button>
+                                    <button type="button" 
+                                            [disabled]="orderForm.invalid"
+                                            (click)="sendData()">send</button>
                                 </div>
                             </div>
                         </div>
@@ -275,18 +293,21 @@
                         </div>
                     </div>
                     <div [formGroup]="signUpForm" class="send-form">
-                        <input type="text" 
-                                class="input-offers" 
-                                placeholder="ENTER HERE YOUR EMAIL"
-                                [formControl]="emailSignUp" 
-                                required>
-                        <div class="btn-send max-width__sned">
-                            <button class="" 
-                                    type="button"
-                                    [disabled]="emailSignUp.invalid" 
-                                    (click)="singUp()">
-                                    SEND
-                            </button>
+                        <div class="inputs-block">
+                            <input type="text" 
+                                    class="input-offers" 
+                                    placeholder="ENTER HERE YOUR EMAIL"
+                                    [formControl]="emailSignUp" 
+                                    required>
+                            <div class="btn-send max-width__sned">
+                                <button class="" 
+                                        type="button"
+                                        [disabled]="emailSignUp.invalid" 
+                                        (click)="singUp()">
+                                        SEND
+                                </button>
+                            </div>
+                            <div [hidden]="emailSignUp.valid" class="error-txt error-position">Email isn't valid</div>
                         </div>
                     </div>
                 </div>
@@ -312,18 +333,22 @@
                             <div class="row justify-content-center">
                                 <div class="col-2">
                                     <div class="fb">
-                                        <div class="fb-wrapper">
-                                            <i class="fa fa-facebook-square" aria-hidden="true"></i>
-                                            Share
-                                        </div>
+                                        <a href="https://www.facebook.com/" target="_blank">
+                                            <div class="fb-wrapper">
+                                                <i class="fa fa-facebook-square" aria-hidden="true"></i>
+                                                Share
+                                            </div>
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="col-2">
                                     <div class="twit">
-                                        <div class="twit-wrapper">
-                                            <i class="fa fa-twitter" aria-hidden="true"></i>
-                                            Tweet
-                                        </div>
+                                        <a href="https://twitter.com/" target="_blank">
+                                            <div class="twit-wrapper">
+                                                <i class="fa fa-twitter" aria-hidden="true"></i>
+                                                Tweet
+                                            </div>
+                                        </a>
                                     </div>
                                 </div>
                             </div>

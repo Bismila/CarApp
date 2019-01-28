@@ -45,6 +45,14 @@
         }
     }
 }
+.btn-send button:disabled{
+    cursor: not-allowed;
+    opacity: 0.75;
+    &:hover{
+        background-color: #1d3f6f;
+        color: #ffffff;
+    }
+}
 .btn-clear{
     max-width: 135px;
     width: 100%;
@@ -63,10 +71,15 @@
             border: 1px solid #1d3f6f;
             background-color: #1d3f6f;
             color: #ffffff;
+            transition: all .4s ease;
         }
     }
 }
 
+.inputs-block{
+    margin-bottom: 25px;
+    position: relative;
+}
 .inputs{
     display: inline-block;
     width: 100%;
@@ -76,10 +89,9 @@
     max-width: 242px;
     width: 100%;
     height: 50px;
-    margin: 15px 0;
+    margin: 10px 0 0 0;
     padding-left: 15px;
     font-family: 'Open Sans', sans-serif;
-    text-transform: uppercase;
     border: 1px solid #1d3f6f;
     border-radius: 4px;
     color: #999999;
@@ -300,6 +312,11 @@ input[type="radio"] {
 .socials{
     padding-top: 60px;
 }
+.fb, .twit{
+    a:hover{
+        text-decoration: none;
+    }
+}
 .fb-wrapper{
     margin-left: auto;
     padding-left: 5px;
@@ -377,4 +394,24 @@ input[type="radio"] {
         font-size: 24px;
         color: #ccc;
     }
+}
+
+.error-txt{
+    position: absolute;
+    padding-top: 3px;
+    padding-left: 13px;
+    font-size: 10px;
+    color: red;
+}
+
+.error-mail{
+    margin-top: -4%;
+    padding-left: 13px;
+    font-size: 9px;
+    color: red;
+}
+
+.error-position{
+    left: 38%;
+    transform: translateX(-13%);
 }

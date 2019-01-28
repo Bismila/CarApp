@@ -16,27 +16,33 @@ export class OrderFormComponent implements OnInit, OnDestroy {
   user = new UsersViewModel();
   public cars: Array<string>;
   public supportsAll: Array<string>;
-  default = 'SELECT YOUR CAR';
+  defaultValue = 'SELECT YOUR CAR';
   isActive = false;
-
+  isEmptyCarModel = true;
   orderForm = new FormGroup({});
+  //controls for date & time
   dateFrom1 = new FormControl('', Validators.required);
   timeFrom1 = new FormControl('', Validators.required);
-  dateEnd = new FormControl('', Validators.required);
-  timeEnd = new FormControl('', Validators.required);
+  dateEnd = new FormControl('');
+  timeEnd = new FormControl('');
+
+  //controls for suppurts (services)
   transmission = new FormControl(false);
   maintenance = new FormControl(false);
   rapair = new FormControl(false);
   other = new FormControl(false);
-  carYear = new FormControl();
-  carModel = new FormControl(this.default);
-  message = new FormControl();
-  firstName = new FormControl();
-  lastName = new FormControl();
-  email = new FormControl();
-  phone = new FormControl();
 
-  support = new FormControl(false);
+  // info for car
+  carYear = new FormControl();
+  carModel = new FormControl(this.defaultValue);
+  message = new FormControl();
+
+  // info from user
+  firstName = new FormControl('', [Validators.required]);
+  lastName = new FormControl('', [Validators.required]);
+  email = new FormControl('', [Validators.required, Validators.email]);
+  phone = new FormControl('', [Validators.required]);
+
 
   signUpForm = new FormGroup({});
   emailSignUp = new FormControl('');
@@ -56,9 +62,18 @@ export class OrderFormComponent implements OnInit, OnDestroy {
                   alert('Server error.');
               }
           );
+    this.carModel.valueChanges.subscribe((isEmpty: boolean) => {
+        let result = false;
+        if(this.carModel.value === this.defaultValue){
+          result = true;
+        }
+        this.isEmptyCarModel = result;
+        return result;
+    });
   }
 
   public sendData(){
+    console.log(this.orderForm);
     if(!this.orderForm.valid) {
       return;
     }
@@ -67,7 +82,7 @@ export class OrderFormComponent implements OnInit, OnDestroy {
       order.dateFrom = this.dateFrom1.value + ' ' + this.timeFrom1.value;
       order.dateEnd = this.dateEnd.value + ' ' + this.timeEnd.value;
 
-      if (this.carYear.value !== '' || this.carModel.value !== '') {
+      if (this.carModel.value !== this.defaultValue && (this.carYear.value !== '' || this.carModel.value !== '')) {
           order.car = new CarsViewModel();
 
           if (this.carYear.value !== '') {
@@ -76,6 +91,10 @@ export class OrderFormComponent implements OnInit, OnDestroy {
           if (this.carModel.value !== '') {
               order.car.name = this.carModel.value;
           }
+        }
+        else{
+          this.isEmptyCarModel = true;
+        }
         order.message = this.message.value;
 
         order.user = new UsersViewModel();
@@ -113,7 +132,6 @@ export class OrderFormComponent implements OnInit, OnDestroy {
           }, error => {
                   alert('Server error.');
         });
-      }
     }
   }
 
@@ -160,8 +178,6 @@ export class OrderFormComponent implements OnInit, OnDestroy {
     this.orderForm.addControl('email', this.email);
     this.orderForm.addControl('phone', this.phone);
 
-    this.orderForm.addControl('support', this.support);
-
     this.signUpForm.addControl('emailSignUp', this.emailSignUp);
   }
 
@@ -182,8 +198,6 @@ export class OrderFormComponent implements OnInit, OnDestroy {
     this.orderForm.removeControl('email');
     this.orderForm.removeControl('phone');
 
-    this.orderForm.removeControl('support');
-
     this.signUpForm.removeControl('emailSignUp');
   }
 
@@ -197,7 +211,7 @@ export class OrderFormComponent implements OnInit, OnDestroy {
     this.rapair.setValue('');
     this.other.setValue('');
     this.carYear.setValue('');
-    this.carModel.setValue(this.default);
+    this.carModel.setValue(this.defaultValue);
     this.message.setValue('');
     this.firstName.setValue('');
     this.lastName.setValue('');
