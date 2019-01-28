@@ -10,6 +10,8 @@ import { HeaderComponent } from './share/header/header.component';
 import { FooterComponent } from './share/footer/footer.component';
 import { OrderFormComponent } from './share/order-form/order-form.component';
 import { PageContentComponent} from './share/page-content/page-content.component';
+import { NavbarMenuComponent } from './share/navbar-menu/navbar-menu.component';
+import { Ng2PageScrollModule } from 'ng2-page-scroll';
 
 @NgModule({
   declarations: [
@@ -17,14 +19,16 @@ import { PageContentComponent} from './share/page-content/page-content.component
     HeaderComponent,
     FooterComponent,
     OrderFormComponent,
-    PageContentComponent
+    PageContentComponent,
+    NavbarMenuComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    Ng2PageScrollModule
   ],
   providers: [MovingService],
   bootstrap: [AppComponent]
