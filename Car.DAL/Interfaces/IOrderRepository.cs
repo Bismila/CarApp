@@ -8,7 +8,6 @@ namespace Car.DAL.Interfaces
 {
     public interface IOrderRepository : IBaseRepository<Orders>
     {
-        //Task<Orders> GetLast(OrderSupports item);
-
+        Task<bool> Find(Orders item);
     }
 }

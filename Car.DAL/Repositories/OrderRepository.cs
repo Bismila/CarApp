@@ -41,5 +41,12 @@ namespace Car.DAL.Repositories
             _db.Entry(item).State = EntityState.Modified;
             await _db.SaveChangesAsync();
         }
+
+        public async Task<bool> Find(Orders item)
+        {
+            if(await _db.Orders.ContainsAsync<Orders>(item))
+                return true;
+            return false;
+        }
     }
 }

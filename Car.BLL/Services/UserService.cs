@@ -23,7 +23,16 @@ namespace Car.BLL.Services
 
         public async Task Create(UsersDto item)
         {
-            await _userRepository.Create(_mapper.Mapper.Map<Users>(item));
+            try
+            {
+                await _userRepository.Create(_mapper.Mapper.Map<Users>(item));
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
 
         public async Task<bool> ExistUser(string userEmail)

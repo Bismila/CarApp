@@ -38,7 +38,7 @@ namespace Car.BLL.Services
             var supports = await _supportsRepository.GetSupportsByName(item.SupportsName);
             item.UserId = currentUser.Id;
             item.CarId = car.Id;
-            item.SupportId = supports.Id;
+            item.SupportsId = supports.Id;
            
             if (currentUser != null)
             {

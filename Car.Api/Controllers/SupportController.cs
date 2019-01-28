@@ -23,7 +23,7 @@ namespace Car.Api.Controllers
 
         // GET: api/Cars
         [HttpGet]
-        public async Task<ActionResult<List<string>>> GetCars()
+        public async Task<ActionResult<List<string>>> GetAll()
         {
             try
             {

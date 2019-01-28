@@ -32,10 +32,10 @@ export class OrderFormComponent implements OnInit, OnDestroy {
   timeEnd = new FormControl('');
 
   //controls for suppurts (services)
-  transmission = new FormControl(false);
-  maintenance = new FormControl(false);
-  rapair = new FormControl(false);
-  other = new FormControl(false);
+  transmission = new FormControl(false , Validators.required);
+  maintenance = new FormControl(false, Validators.required);
+  rapair = new FormControl(false, Validators.required);
+  other = new FormControl(true, Validators.required);
 
   // info for car
   carYear = new FormControl();
@@ -84,8 +84,16 @@ export class OrderFormComponent implements OnInit, OnDestroy {
     }
     else {
       const order = new OrdersViewModel();
-      order.dateFrom = this.dateFrom1.value.ToDateString() + ' ' + this.timeFrom1.value;
-      order.dateEnd = this.dateEnd.value.ToDateString() + ' ' + this.timeEnd.value;
+      const dateFrom = this.convertDateToString(this.dateFrom1.value);
+      const dateEnd = this.convertDateToString(this.dateEnd.value);
+
+      if(dateFrom !== null){
+        order.dateFrom = dateFrom + ' ' + this.timeFrom1.value;
+      }
+      if(dateEnd !== null){
+        order.dateEnd = dateEnd + ' ' + this.timeEnd.value;
+      }
+      
 
       if (this.carModel.value !== this.defaultValue && (this.carYear.value !== '' || this.carModel.value !== '')) {
           order.car = new CarsViewModel();
@@ -118,7 +126,7 @@ export class OrderFormComponent implements OnInit, OnDestroy {
           }
           else if (this.rapair.value) {
            order.supports = new SupportsViewModel();
-           order.supports.name = 'Vehicle Repair';
+           order.supports.name = 'Vehicle Rapair';
           }
           else if (this.other.value) {
            order.supports = new SupportsViewModel();
@@ -130,9 +138,6 @@ export class OrderFormComponent implements OnInit, OnDestroy {
         this._movingService.create(order).subscribe((responce) => {
             if (responce) {
                 alert('Your order created successfully.');
-            }
-            else {
-                alert('We cannot create order on this time, change time.');
             }
           }, error => {
                   alert('Server error.');
@@ -227,18 +232,17 @@ export class OrderFormComponent implements OnInit, OnDestroy {
     this.emailSignUp.setValue('');
   }
 
-  selectSupport(event) {
-    console.log(event);
-    // if (this.transmission.value) {
-    //   this.isActive = !this.isActive;
-    //  }
-    //  else if (this.maintenance.value) {
-    //   this.isActive = !this.isActive;
-    //  }
-    //  else if (this.rapair.value) {
-    //  }
-    //  else if (this.other.value) {
-    //  }
+  private convertDateToString(date: Date): string {
+    const currentDate = date;
+      if (currentDate && (currentDate instanceof Date)) {
+      const year = currentDate.getFullYear();
+      const month = currentDate.getMonth() + 1;
+      const day = currentDate.getDate();
+      const displayMonth = month < 10 ? '0' + month : month;
+      const displayDay = day < 10 ? '0' + day : day;
+      return `${displayMonth}/${displayDay}/${year}`;
+    }
+    return null;
   }
 
   ngOnDestroy(): void {

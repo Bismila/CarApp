@@ -12,7 +12,7 @@ namespace Car.BLL.DTO
 
         public int CarId { get; set; }
         public int UserId { get; set; }
-        public int SupportId { get; set; }
+        public int SupportsId { get; set; }
         public string Message { get; set; }
 
         public string UserEmail { get; set; }

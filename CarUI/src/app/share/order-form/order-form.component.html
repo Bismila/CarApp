@@ -51,7 +51,7 @@
                                                 onfocus="(this.type='time')" 
                                                 onblur="(this.type='text')"
                                                 [formControl]="timeFrom1"
-                                                maxlength="5"
+                                                maxlength="6"
                                                 required>
                                         <span class="input-img">
                                             <img src="../../../assets/images/clock.png" alt="Time">
@@ -166,7 +166,8 @@
                                             type="radio" 
                                             name="supports"
                                             value="other" 
-                                            [formControl]="other">
+                                            [formControl]="other"
+                                            [value]="true">
                                     <label class="checkmark" for="other">Other</label>
                                 </div>
                             </div>
@@ -189,7 +190,7 @@
                                         class="input-date"
                                         placeholder="YEAR OF CAR"
                                         [formControl]="carYear" 
-                                        maxlength="8">
+                                        maxlength="10">
                             </div>
                         </div>
                         <div class="col-12 col-xl-4">
@@ -261,7 +262,8 @@
                                     <input type="text" 
                                             [formControl]="phone"
                                             class="input-date"
-                                            placeholder="PHONE NUMBER">
+                                            placeholder="PHONE NUMBER"
+                                            maxlength="10">
                                     <div [hidden]="phone.valid" class="error-txt">Enter your phone</div>
                                 </div>
                             </div>
